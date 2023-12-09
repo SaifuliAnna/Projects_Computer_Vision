@@ -7,20 +7,17 @@ mp_draw = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose()
 
-cap = cv2.VideoCapture('PoseVideos/5.mp4')
+cap = cv2.VideoCapture(0)
+
 previous_time = 0
 
 while True:
     success, img = cap.read()
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = pose.process(img_rgb)
-    # print(results.pose_landmarks)
+    print(results.pose_landmarks)
     if results.pose_landmarks:
         mp_draw.draw_landmarks(img, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
-        for id, lm in enumerate(results.pose_landmarks.landmark):
-            height, weight, chanel = img.shape
-            chanel_x, chanel_y = int(lm.x * weight), int(lm.y * height)
-            cv2.circle(img, (chanel_x, chanel_y), 5, (255, 0, 0), cv2.FILLED)
 
     current_time = time.time()
     fps = 1 / (current_time - previous_time)
