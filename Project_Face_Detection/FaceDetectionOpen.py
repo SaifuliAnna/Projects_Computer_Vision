@@ -3,7 +3,7 @@ import mediapipe as mp  # Mediapipe is used to detect and track key points on th
 import time
 
 
-cap = cv2.VideoCapture('videos/7.mp4')
+cap = cv2.VideoCapture('videos/6.mp4')
 previous_time = 0
 
 while True:
